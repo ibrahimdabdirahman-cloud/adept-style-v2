@@ -320,10 +320,13 @@
 
   /* ---------- wire existing CTAs + review containers ---------- */
   function wireExisting() {
-    document.querySelectorAll("[data-masul-open]").forEach(function (node) {
+    document.querySelectorAll('[data-masul-open], a[href="#appointment"]').forEach(function (node) {
       if (node.dataset.masulBound) return;
       node.dataset.masulBound = "1";
-      node.addEventListener("click", function (e) { e.preventDefault(); open(node.getAttribute("data-masul-open")); });
+      node.addEventListener("click", function (e) {
+        e.preventDefault();
+        open(node.getAttribute("data-masul-open") || "appointment");
+      });
     });
     document.querySelectorAll("[data-masul-reviews]").forEach(function (node) {
       if (node.dataset.masulReviewed) return;
