@@ -168,6 +168,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     // createElement so they execute, awaiting onload for src scripts to
     // preserve ordering (React before ReactDOM before Babel before text/babel).
     const doc = new DOMParser().parseFromString(template, 'text/html');
+    const mobileCss = doc.createElement('link');
+    mobileCss.rel = 'stylesheet';
+    mobileCss.href = 'mobile.css';
+    doc.head.appendChild(mobileCss);
     document.documentElement.replaceWith(doc.documentElement);
     const dead = Array.from(document.scripts);
     for (const old of dead) {
